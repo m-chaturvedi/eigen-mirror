@@ -75,7 +75,7 @@ void MatrixBase<Derived>::makeHouseholder(
   
   RealScalar tailSqNorm = size()==1 ? RealScalar(0) : tail.squaredNorm();
   Scalar c0 = coeff(0);
-  const RealScalar tol = (std::numeric_limits<RealScalar>::min)();
+  const RealScalar tol = std::numeric_limits<RealScalar>::is_specialized ? (std::numeric_limits<RealScalar>::min)() : RealScalar(0);
 
   if(tailSqNorm <= tol && numext::abs2(numext::imag(c0))<=tol)
   {
